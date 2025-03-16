@@ -108,6 +108,54 @@ class UserController extends Controller
         return view('user.show', compact('breadcrumb', 'page', 'user', 'active_menu'));
     }
 
+    public function edit(string $id)
+    {
+        $user = UserModel::find($id);
+        $level = LevelModel::all();
+        $breadcrumb = (object)[
+            'title' => 'User',
+            'list' => ['Home', 'User', 'Edit']
+        ];
+        $page = (object)[
+            'title' => 'Edit User',
+        ];
+        $active_menu = 'user'; //menu yg sedang aktif
+        return view('user.edit', compact('breadcrumb', 'page', 'user', 'level', 'active_menu'));
+    }
+
+    public function update(Request $request, string $id)
+    {
+        //username harus diisi, string, minimal 3 karakter, dan unique di tabel users
+        $request->validate([
+            'username' => 'required|string|min:3|unique:m_user,username,' . $id . ',user_id',
+            'nama' => 'required|string|max:100',
+            'password' => 'nullable|min:5',
+            'level_id' => 'required|integer',
+        ]);
+
+        UserModel::find($id)->update([
+            'username' => $request->username,
+            'nama' => $request->nama,
+            'password' => $request->password ? bcrypt($request->password) : UserModel::find($id)->password,
+            'level_id' => $request->level_id,
+        ]);
+        return redirect('/user')->with('success', 'User berhasil diubah');
+    }
+
+    public function destroy(string $id)
+    {
+        $check = UserModel::find($id);
+        if (!$check) {
+            return redirect('/user')->with('error', 'User tidak ditemukan');
+        }
+        try {
+            UserModel::destroy($id);
+            return redirect('/user')->with('success', 'User berhasil dihapus');
+        } catch (\Illuminate\Database\QueryException $e) {
+            return redirect('/user')->with('error', 'User gagal dihapus karena masih terdapat tabel lain yang terkait dengan data ini');
+        }
+    }
+
     public function create_ajax()
     {
         $level = LevelModel::select('level_id', 'level_nama')->get();
@@ -149,46 +197,13 @@ class UserController extends Controller
     }
 
 
-    public function edit(string $id)
-    {
-        $user = UserModel::find($id);
-        $level = LevelModel::all();
-        $breadcrumb = (object)[
-            'title' => 'User',
-            'list' => ['Home', 'User', 'Edit']
-        ];
-        $page = (object)[
-            'title' => 'Edit User',
-        ];
-        $active_menu = 'user'; //menu yg sedang aktif
-        return view('user.edit', compact('breadcrumb', 'page', 'user', 'level', 'active_menu'));
-    }
-
-    public function update(Request $request, string $id)
-    {
-        //username harus diisi, string, minimal 3 karakter, dan unique di tabel users
-        $request->validate([
-            'username' => 'required|string|min:3|unique:m_user,username,' . $id . ',user_id',
-            'nama' => 'required|string|max:100',
-            'password' => 'nullable|min:5',
-            'level_id' => 'required|integer',
-        ]);
-
-        UserModel::find($id)->update([
-            'username' => $request->username,
-            'nama' => $request->nama,
-            'password' => $request->password ? bcrypt($request->password) : UserModel::find($id)->password,
-            'level_id' => $request->level_id,
-        ]);
-        return redirect('/user')->with('success', 'User berhasil diubah');
-    }
-
     public function edit_ajax(string $id)
     {
         $user = UserModel::find($id);
         $level = LevelModel::select('level_id', 'level_nama')->get();
         return view('user.edit_ajax', compact('user', 'level'));
     }
+
 
     public function update_ajax(Request $request,  $id)
     {
@@ -238,17 +253,29 @@ class UserController extends Controller
         }
     }
 
-    public function destroy(string $id)
+    public function confirm_ajax(string $id)
     {
-        $check = UserModel::find($id);
-        if (!$check) {
-            return redirect('/user')->with('error', 'User tidak ditemukan');
+        $user = UserModel::find($id);
+        return view('user.confirm_ajax', compact('user'));
+    }
+
+    public function delete_ajax(Request $request, $id){
+        //cek apakh req berupa ajax
+        if ($request->ajax() || $request->wantsJson()) {
+            $user = UserModel::find($id);
+            if ($user) {
+                $user->delete();
+                return response()->json([
+                    'status' => true, //status berhasil
+                    'message' => 'Data berhasil dihapus',
+                ]);
+            }else{
+                return response()->json([
+                    'status' => false, //status gagal
+                    'message' => 'Data tidak ditemukan',
+                ]);
+            }
         }
-        try {
-            UserModel::destroy($id);
-            return redirect('/user')->with('success', 'User berhasil dihapus');
-        } catch (\Illuminate\Database\QueryException $e) {
-            return redirect('/user')->with('error', 'User gagal dihapus karena masih terdapat tabel lain yang terkait dengan data ini');
-        }
+        return redirect('/user');
     }
 }

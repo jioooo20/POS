@@ -27,14 +27,17 @@ Route::group(['prefix' => 'user'], function () {
     Route::post('/list', [UserController::class, 'list'])->name('user.list');
     Route::get('/create', [UserController::class, 'create'])->name('user.create');
     Route::post('/store', [UserController::class, 'store'])->name('user.store');
-    Route::get('/create_ajax', [UserController::class, 'create_ajax'])->name('user.create_ajax');
-    Route::post('/store_ajax', [UserController::class, 'store_ajax'])->name('user.store_ajax');
     Route::get('/{id}', [UserController::class, 'show'])->name('user.show');
     Route::get('/{id}/edit', [UserController::class, 'edit'])->name('user.edit');
     Route::put('/{id}', [UserController::class, 'update'])->name('user.update');
+    Route::delete('/{id}', [UserController::class, 'destroy'])->name('user.destroy');
+    //====
+    Route::get('/create_ajax', [UserController::class, 'create_ajax'])->name('user.create_ajax');
+    Route::post('/store_ajax', [UserController::class, 'store_ajax'])->name('user.store_ajax');
     Route::get('/{id}/edit_ajax', [UserController::class, 'edit_ajax'])->name('user.edit_ajax');
     Route::put('/{id}/update_ajax', [UserController::class, 'update_ajax'])->name('user.update_ajax');
-    Route::delete('/{id}', [UserController::class, 'destroy'])->name('user.destroy');
+    Route::get('/{id}/delete_ajax', [UserController::class, 'confirm_ajax'])->name('user.confirm_ajax');
+    Route::delete('/{id}/delete_ajax', [UserController::class, 'delete_ajax'])->name('user.delete_ajax');
 });
 
 Route::group(['prefix' => 'level'], function () {
