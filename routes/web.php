@@ -27,9 +27,13 @@ Route::group(['prefix' => 'user'], function () {
     Route::post('/list', [UserController::class, 'list'])->name('user.list');
     Route::get('/create', [UserController::class, 'create'])->name('user.create');
     Route::post('/store', [UserController::class, 'store'])->name('user.store');
+    Route::get('/create_ajax', [UserController::class, 'create_ajax'])->name('user.create_ajax');
+    Route::post('/store_ajax', [UserController::class, 'store_ajax'])->name('user.store_ajax');
     Route::get('/{id}', [UserController::class, 'show'])->name('user.show');
     Route::get('/{id}/edit', [UserController::class, 'edit'])->name('user.edit');
     Route::put('/{id}', [UserController::class, 'update'])->name('user.update');
+    Route::get('/{id}/edit_ajax', [UserController::class, 'edit_ajax'])->name('user.edit_ajax');
+    Route::put('/{id}/update_ajax', [UserController::class, 'update_ajax'])->name('user.update_ajax');
     Route::delete('/{id}', [UserController::class, 'destroy'])->name('user.destroy');
 });
 
@@ -76,40 +80,3 @@ Route::group(['prefix' => 'barang'], function () {
     Route::put('/{id}', [BarangController::class, 'update'])->name('barang.update');
     Route::delete('/{id}', [BarangController::class, 'destroy'])->name('barang.destroy');
 });
-
-
-// //week4
-// Route::get('/user/tambah', [UserController::class, 'tambah'])->name('tambah');
-// Route::post('/user/tambah_simpan', [UserController::class, 'tambah_simpan'])->name('tambah_simpan');
-// Route::get('/user/ubah/{id}', [UserController::class, 'ubah'])->name('ubah');
-// Route::put('/user/ubah_simpan/{id}',[UserController::class,'ubah_simpan'])->name('ubah_simpan');
-// Route::get('/user/hapus/{id}', [UserController::class, 'hapus'])->name('hapus');
-
-// //week3
-// Route::get('/level', [LevelController::class, 'index']);
-// Route::get('/kategori', [KategoriController::class, 'index']);
-// Route::get('/user', [UserController::class, 'index'])->name('user');
-
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-// Route::get('/hello', [WelcomeController::class,'hello']);
-
-// Route::get('/world', function () {
-//     return 'World';
-// });
-
-// Route::get('/', [HomeController::class, 'index']);
-// Route::get('/about', [AboutController::class, 'about']);
-// Route::get('articles/{id?}', [ArticleController::class, 'articles']);
-
-// Route::resource('photos', PhotoController::class);
-// Route::resource('photos', PhotoController::class)->only(['index', 'show']);
-// Route::resource('photos', PhotoController::class)->except(['create', 'store', 'update', 'destroy']);
-
-// Route::get('/greeting', function () {
-//     return view('blog.hello', ['name' => 'geeeee']);
-// });
-
-// Route::get('/greeting', [WelcomeController::class, 'greeting']);
