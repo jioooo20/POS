@@ -196,6 +196,12 @@ class UserController extends Controller
         }
     }
 
+    public function show_ajax(string $id)
+    {
+        $user = UserModel::with('level')->find($id);
+        return view('user.show_ajax', compact('user'));
+    }
+
 
     public function edit_ajax(string $id)
     {
@@ -262,17 +268,30 @@ class UserController extends Controller
     public function delete_ajax(Request $request, $id){
         //cek apakh req berupa ajax
         if ($request->ajax() || $request->wantsJson()) {
-            $user = UserModel::find($id);
-            if ($user) {
-                $user->delete();
-                return response()->json([
-                    'status' => true, //status berhasil
-                    'message' => 'Data berhasil dihapus',
-                ]);
-            }else{
+            try {
+                $user = UserModel::find($id);
+                if ($user) {
+                    $user->delete();
+                    return response()->json([
+                        'status' => true, //status berhasil
+                        'message' => 'Data berhasil dihapus',
+                    ]);
+                } else {
+                    return response()->json([
+                        'status' => false, //status gagal
+                        'message' => 'Data tidak ditemukan',
+                    ]);
+                }
+            } catch (\Exception $e) {
+                if ($e->getCode() == '23000') { //sqlstate:23000
+                    return response()->json([
+                        'status' => false, //status gagal
+                        'message' => 'Data tidak dapat dihapus karena masih terkait dengan data lain.',
+                    ]);
+                }
                 return response()->json([
                     'status' => false, //status gagal
-                    'message' => 'Data tidak ditemukan',
+                    'message' => 'Terjadi kesalahan saat menghapus data: ' . $e->getMessage(),
                 ]);
             }
         }
