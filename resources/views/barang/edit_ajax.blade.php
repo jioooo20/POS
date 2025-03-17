@@ -30,10 +30,10 @@
                     <div class="form-group">
                         <label>Kategori Barang</label>
                         <select name="kategori_id" id="kategori_id" class="form-control" required>
-                            <option value="">- Pilih Level -</option>
+                            <option value="">- Pilih Kategori -</option>
                             @foreach ($kategori as $l)
                                 <option {{ $l->kategori_id == $barang->kategori_id ? 'selected' : '' }}
-                                    value="{{ $l->kategori_id }}">{{ $l->level_nama }}</option>
+                                    value="{{ $l->kategori_id }}">{{ $l->kategori_nama }}</option>
                             @endforeach
                         </select>
                         <small id="error-kategori_id" class="error-text form-text text danger"></small>
