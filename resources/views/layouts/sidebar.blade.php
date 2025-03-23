@@ -24,10 +24,17 @@
     <!-- Sidebar Menu -->
     <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+
             <li class="nav-item">
                 <a href="{{ url('/') }}" class="nav-link  {{ $active_menu == 'dashboard' ? 'active' : '' }} ">
                     <i class="nav-icon fas fa-tachometer-alt"></i>
                     <p>Dashboard</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ route('logout') }}" class="nav-link" >
+                    <i class="nav-icon fas fa-sign-out-alt" style="color:red;"></i>
+                    <p>Logout</p>
                 </a>
             </li>
             <li class="nav-header">Data Pengguna</li>
