@@ -20,21 +20,20 @@
 
 </head>
 
-<body class="hold-transition login-page">
-    <div class="login-box">
-        <!-- /.login-logo -->
+<body class="hold-transition register-page">
+    <div class="register-box">
         <div class="card card-outline card-primary">
             <div class="card-header text-center"><a href="{{ url('/') }}" class="h1"><b>Admin</b>LTE</a></div>
             <div class="card-body">
-                <p class="login-box-msg">Sign in to start your session</p>
-                <form action="{{ route('postlogin') }}" method="POST" id="form-login">
+                <p class="login-box-msg">Register a new membership</p>
+                <form action="{{ route('postregister') }}" method="POST" id="form-register">
                     @csrf
                     <div class="input-group mb-3">
                         <input type="text" id="username" name="username" class="form-control"
                             placeholder="Username">
                         <div class="input-group-append">
                             <div class="input-group-text">
-                                <span class="fas fa-envelope"></span>
+                                <span class="fas fa-user"></span>
                             </div>
                         </div>
                         <small id="error-username" class="error-text text-danger"></small>
@@ -49,29 +48,41 @@
                         </div>
                         <small id="error-password" class="error-text text-danger"></small>
                     </div>
-                    <div class="row">
-                        <div class="col-8">
-                            <div class="icheck-primary">
-                                <input type="checkbox" id="remember"><label for="remember">Remember Me</label>
+                    <div class="input-group mb-3">
+                        <input type="text" id="nama" name="nama" class="form-control" placeholder="Nama">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-id-card"></span>
                             </div>
                         </div>
-                        <!-- /.col -->
-                        <div class="col-4">
-                            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
-                        </div>
-                        <!-- /.col -->
+                        <small id="error-nama" class="error-text text-danger"></small>
                     </div>
-                    <!-- Register Link -->
-                    <div class="text-center mt-3">
-                        <a href="{{ route('register') }}">Don't have account yet? <b>Register here</b></a>
+                    <div class="input-group mb-3">
+                        <select id="level_id" name="level_id" class="form-control">
+                            <option value="">Pilih Level</option>
+                            @foreach ($levels as $level)
+                                <option value="{{ $level->level_id }}">{{ $level->level_nama }}</option>
+                            @endforeach
+                        </select>
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-layer-group"></span>
+                            </div>
+                        </div>
+                        <small id="error-level_id" class="error-text text-danger"></small>
+                    </div>
+                    <div class="row">
+                        <div class="col-8">
+                            <a href="{{ url('login') }}" class="text-center">I already have an account</a>
+                        </div>
+                        <div class="col-4">
+                            <button type="submit" class="btn btn-primary btn-block">Register</button>
+                        </div>
                     </div>
                 </form>
             </div>
-            <!-- /.card-body -->
         </div>
-        <!-- /.card -->
     </div>
-    <!-- /.login-box -->
 
     <!-- jQuery -->
     <script src="{{ asset('adminlte/plugins/jquery/jquery.min.js') }}"></script>
@@ -90,7 +101,7 @@
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            error: function(xhr, status, error) { //sedikti tambahan debag gedebug
+            error: function(xhr, status, error) {
                 console.error('AJAX Error: ' + status + error);
                 console.error(xhr.responseText);
                 Swal.fire({
@@ -102,46 +113,69 @@
         });
 
         $(document).ready(function() {
-            $("#form-login").validate({
+            $("#form-register").validate({
                 rules: {
                     username: {
                         required: true,
-                        minlength: 4,
+                        minlength: 3,
                         maxlength: 20
                     },
                     password: {
                         required: true,
                         minlength: 6,
                         maxlength: 20
+                    },
+                    nama: {
+                        required: true,
+                        maxlength: 100
+                    },
+                    level_id: {
+                        required: true
                     }
                 },
-                submitHandler: function(form) { // ketika valid, maka bagian yg akan dijalankan
+                submitHandler: function(form) {
                     $.ajax({
-                        url: form.action,
-                        type: form.method,
-                        data: $(form).serialize(),
+                        url: "{{ route('postregister') }}", // Sesuaikan dengan route-mu
+                        method: "POST",
+                        data: $('#form-register').serialize(), // Sesuaikan dengan ID form-mu
                         success: function(response) {
-                            if (response.status) { // jika sukses
+                            if (response.status) {
                                 Swal.fire({
                                     icon: 'success',
                                     title: 'Berhasil',
-                                    text: response.message,
-                                }).then(function() {
-                                    window.location = response.redirect;
+                                    text: response.message
+                                }).then(() => {
+                                    window.location.href = response.redirect;
                                 });
-                            } else { // jika error
-                                $('.error-text').text('');
-                                $.each(response.msgField, function(prefix, val) {
-                                    $('#error-' + prefix).text(val[0]);
-                                });
+                            } else {
                                 Swal.fire({
                                     icon: 'error',
-                                    title: 'Terjadi Kesalahan',
+                                    title: 'Gagal',
                                     text: response.message
+                                });
+                            }
+                        },
+                        error: function(xhr) {
+                            if (xhr.status === 422) {
+                                let errors = xhr.responseJSON.errors;
+                                let errorMessages = Object.values(errors).map(err => err
+                                    .join('\n')).join('\n');
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Gagal Membuat Akun',
+                                    text: errorMessages
+                                });
+                            } else {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Server Error', //return eror dr be
+                                    text: xhr.responseJSON?.message ||
+                                        'Terjadi kesalahan pada server'
                                 });
                             }
                         }
                     });
+
                     return false;
                 },
                 errorElement: 'span',

@@ -21,7 +21,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 $router->pattern('id', '[0-9]+');
-
+Route::get('register', [AuthController::class, 'register'])->name('register');
+Route::post('register', [AuthController::class, 'postregister'])->name('postregister');
 Route::get('login', [AuthController::class, 'login'])->name('login');
 Route::post('login', [AuthController::class, 'postlogin'])->name('postlogin');
 Route::get('logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');
@@ -111,7 +112,7 @@ Route::middleware('auth')->group(function () {
             Route::delete('/{id}', [SupplierController::class, 'destroy'])->name('supplier.destroy');
         });
     });
-    Route::middleware(['authorize:ADM,MNG,STF'])->group(function () { 
+    Route::middleware(['authorize:ADM,MNG,STF'])->group(function () {
         Route::group(['prefix' => 'barang'], function () {
             Route::get('/create_ajax', [BarangController::class, 'create_ajax'])->name('barang.create_ajax');
             Route::post('/store_ajax', [BarangController::class, 'store_ajax'])->name('barang.store_ajax');
