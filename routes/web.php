@@ -9,17 +9,6 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvnameer and all of them will
-| be assigned to the "web" mnamedleware group. Make something great!
-|
-*/
-
 $router->pattern('id', '[0-9]+');
 Route::get('register', [AuthController::class, 'register'])->name('register');
 Route::post('register', [AuthController::class, 'postregister'])->name('postregister');
@@ -121,6 +110,8 @@ Route::middleware('auth')->group(function () {
             Route::put('/{id}/update_ajax', [BarangController::class, 'update_ajax'])->name('barang.update_ajax');
             Route::get('/{id}/delete_ajax', [BarangController::class, 'confirm_ajax'])->name('barang.confirm_ajax');
             Route::delete('/{id}/delete_ajax', [BarangController::class, 'delete_ajax'])->name('barang.delete_ajax');
+            Route::get('/import', [BarangController::class, 'import'])->name('barang.import');
+            Route::post('/import_ajax', [BarangController::class, 'import_ajax'])->name('barang.import_ajax');
             //====
             Route::get('/', [BarangController::class, 'index'])->name('barang');
             Route::post('/list', [BarangController::class, 'list'])->name('barang.list');

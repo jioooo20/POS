@@ -5,6 +5,8 @@
         <div class="card-header">
             <h3 class="card-title">{{ $page->title }}</h3>
             <div class="card-tools">
+                <button onclick="modalAction('{{ url('/barang/import') }}')" class="btn btn-sm btn-info mt-1">Import
+                    Barang</button>
                 <a class="btn btn-sm btn-primary mt-1" href="{{ url('barang/create') }}">Tambah</a>
                 <button onclick="modalAction('{{ url('barang/create_ajax') }}')" class="btn btn-sm btn-success mt-1">Tambah
                     Ajax</button>
@@ -22,7 +24,7 @@
                     <label class="col-1 control-label col-form-label">Filter:</label>
                     <div class="col-3">
                         <select name="kategori_id" id="kategori_id" class="form-control" required>
-                            <option value="">- Pilih Kategori -</option>
+                            <option value="">- Semua Kategori -</option>
                             @foreach ($kategori as $item)
                                 <option value="{{ $item->kategori_id }}">{{ $item->kategori_nama }}</option>
                             @endforeach
@@ -34,7 +36,8 @@
             <table class="table table-bordered table-striped table-hover table-sm" id="table_barang">
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        <th>No</th>
+                        <th>Kategori</th>
                         <th>Kode Barang</th>
                         <th>Nama Barang</th>
                         <th>Harga Beli</th>
@@ -59,9 +62,10 @@
                 $('#myModal').modal('show');
             });
         }
-        var dataUser;
+        var tableBarang;
         $(document).ready(function() {
-            dataUser = $('#table_barang').DataTable({
+            tableBarang = $('#table_barang').DataTable({
+                processing: true,
                 // serverSide: true, jika ingin menggunakan server side processing
                 serverSide: true,
                 ajax: {
@@ -80,6 +84,13 @@
                     searchable: false
                 }, {
                     data: "kategori.kategori_nama",
+                    className: "",
+                    // orderable: true, jika ingin kolom ini bisa diurutkan
+                    orderable: true,
+                    // searchable: true, jika ingin kolom ini bisa dicari
+                    searchable: true
+                }, {
+                    data: "barang_kode",
                     className: "",
                     // orderable: true, jika ingin kolom ini bisa diurutkan
                     orderable: true,
@@ -110,8 +121,14 @@
                     searchable: false
                 }]
             });
+
+            $('#table_barang_filter input').unbind().bind().on('keyup', function(e) {
+                if (e.keyCode == 13) { // enter key
+                    tableBarang.search(this.value).draw(); //gx tau ni apa di js
+                }
+            });
             $('#kategori_id').on('change', function() {
-                dataBarang.ajax.reload();
+                tableBarang.ajax.reload();
             });
         });
     </script>
