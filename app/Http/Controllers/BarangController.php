@@ -364,4 +364,54 @@ class BarangController extends Controller
         }
         return redirect('/barang');
     }
+
+    public function export_excel(){
+        $Barang = BarangModel::select('kategori_id', 'barang_kode', 'barang_nama','harga_beli','harga_jual')
+        ->orderBy('kategori_id', 'asc')
+        ->with('kategori')
+        ->get();
+
+        $spreadsheet = new \PhpOffice\PhpSpreadsheet\Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet(); //ambil sheet aktif
+        $sheet->setCellValue('A1', 'No');
+        $sheet->setCellValue('B1', 'Kode Barang');
+        $sheet->setCellValue('C1', 'Nama Barang');
+        $sheet->setCellValue('D1', 'Harga Beli');
+        $sheet->setCellValue('E1', 'Harga Jual');
+        $sheet->setCellValue('F1', 'Kategori');
+
+        $sheet->getStyle('A1:F1')->getFont()->setBold(true); //bold header
+
+        $no = 1 ;   //nomor dimulai dari 1
+        $baris = 2; //baris dimulai dari 2
+        foreach ($Barang as $barang) {
+            $sheet->setCellValue('A' . $baris, $no++); //nomer cm skli, taruh sini sj inc nya
+            $sheet->setCellValue('B' . $baris, $barang->barang_kode);
+            $sheet->setCellValue('C' . $baris, $barang->barang_nama);
+            $sheet->setCellValue('D' . $baris, $barang->harga_beli);
+            $sheet->setCellValue('E' . $baris, $barang->harga_jual);
+            $sheet->setCellValue('F' . $baris, $barang->kategori->kategori_nama);
+            $baris++;
+        }
+        foreach (range('A', 'F') as $columnID) {
+            $sheet->getColumnDimension($columnID)->setAutoSize(true); //atur lebar kolom otomatis
+        }
+
+        $sheet->setTitle('Data Barang'); //set judul sheet
+        $writer = IOFactory::createWriter($spreadsheet, 'Xlsx'); //buat writer
+        $filename = 'Data_Barang_' . date('Y-m-d_H-i-s') . '.xlsx'; //set nama file
+
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment; filename="' . $filename . '"');
+        header('Cache-Control: max-age=0');
+        header('Cache-Control: max-age=1');
+        header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
+        header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
+        header('Cache-Control: cache, must-revalidate');
+        header('Pragma: public');
+
+        $writer->save('php://output'); //simpan ke output
+        exit; //keluar dari script
+
+    }
 }

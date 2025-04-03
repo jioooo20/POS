@@ -112,6 +112,7 @@ Route::middleware('auth')->group(function () {
             Route::delete('/{id}/delete_ajax', [BarangController::class, 'delete_ajax'])->name('barang.delete_ajax');
             Route::get('/import', [BarangController::class, 'import'])->name('barang.import');
             Route::post('/import_ajax', [BarangController::class, 'import_ajax'])->name('barang.import_ajax');
+            Route::get('export_excel', [BarangController::class, 'export_excel'])->name('barang.export_excel');
             //====
             Route::get('/', [BarangController::class, 'index'])->name('barang');
             Route::post('/list', [BarangController::class, 'list'])->name('barang.list');
