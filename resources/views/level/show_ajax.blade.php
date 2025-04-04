@@ -28,7 +28,7 @@
             <div class="modal-body">
                 <table class="table table-bordered">
                     <tr>
-                        <th width="25%">ID User</th>
+                        <th width="25%">ID Level</th>
                         <td>{{ $level->level_id }}</td>
                     </tr>
                     <tr>
