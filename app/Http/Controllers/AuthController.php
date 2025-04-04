@@ -102,7 +102,7 @@ class AuthController extends Controller
     {
         $breadcrumb = (object)[
             'title' => 'Edit Profil',
-            'list' => ['Home', 'Profil','Edit Profil']
+            'list' => ['Home', 'Profil', 'Edit Profil']
         ];
         $active_menu = 'profile';
         $user = UserModel::findOrFail($id);
@@ -122,7 +122,7 @@ class AuthController extends Controller
         $user = UserModel::findOrFail($id);
         if (UserModel::where('username', $request->username)->where('user_id', '!=', $id)->exists()) {
             return redirect()->back()->withErrors(['username' => 'Username telah digunakan']);
-        }else {
+        } else {
             $user->username = $request->username;
         }
         $user->nama = $request->nama;
@@ -135,6 +135,7 @@ class AuthController extends Controller
             $base64Image = 'data:image/' . $image->getClientOriginalExtension() . ';base64,' . base64_encode($imageContent);
             $user->profile_image = $base64Image;
         }
+        $user->updated_at = now()->timezone('Asia/Jakarta');
         $user->save();
 
         return redirect("/profile/{$id}")->with('success', 'Profile updated successfully!');
