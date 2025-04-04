@@ -17,7 +17,7 @@
                                         value="{{ old('id_user', $user->user_id) }}" readonly>
                                 </div>
                                 <div class="form-group">
-                                    <label for="nama">Full Name</label>
+                                    <label for="nama">Nama Lengkap</label>
                                     <input type="text" class="form-control" id="nama" name="nama"
                                         value="{{ old('nama', $user->nama) }}" required>
                                 </div>
@@ -27,7 +27,7 @@
                                         value="{{ old('username', $user->username) }}" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="profile_image">Profile Image</label>
+                                    <label for="profile_image">Gambar Profil</label>
                                     <div class="input-group">
                                         <div class="custom-file">
                                             <input type="file" class="custom-file-input" id="profile_image"
@@ -46,21 +46,21 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="password">New Password</label>
+                                    <label for="password">Password Baru</label>
                                     <input type="password" class="form-control" id="password" name="password">
-                                    <small class="text-muted">Leave blank if you don't want to change password</small>
+                                    <small class="text-muted">Biarkan kosong apabila tidak ingin mengganti password</small>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="password_confirmation">Confirm New Password</label>
+                                    <label for="password_confirmation">Konfirmasi Password Baru</label>
                                     <input type="password" class="form-control" id="password_confirmation"
                                         name="password_confirmation">
                                 </div>
                             </div>
 
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-primary">Save</button>
-                                <a href="{{ url('/profile/' . Auth::user()->user_id) }}" class="btn btn-default">Cancel</a>
+                                <button type="submit" class="btn btn-primary">Simpan</button>
+                                <a href="{{ url('/profile/' . Auth::user()->user_id) }}" class="btn btn-default">Batal</a>
                             </div>
                         </form>
                     </div>
