@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\BarangModel;
 use App\Models\KategoriModel;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use PhpOffice\PhpSpreadsheet\IOFactory;
@@ -365,11 +366,12 @@ class BarangController extends Controller
         return redirect('/barang');
     }
 
-    public function export_excel(){
-        $Barang = BarangModel::select('kategori_id', 'barang_kode', 'barang_nama','harga_beli','harga_jual')
-        ->orderBy('kategori_id', 'asc')
-        ->with('kategori')
-        ->get();
+    public function export_excel()
+    {
+        $Barang = BarangModel::select('kategori_id', 'barang_kode', 'barang_nama', 'harga_beli', 'harga_jual')
+            ->orderBy('kategori_id', 'asc')
+            ->with('kategori')
+            ->get();
 
         $spreadsheet = new \PhpOffice\PhpSpreadsheet\Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet(); //ambil sheet aktif
@@ -382,7 +384,7 @@ class BarangController extends Controller
 
         $sheet->getStyle('A1:F1')->getFont()->setBold(true); //bold header
 
-        $no = 1 ;   //nomor dimulai dari 1
+        $no = 1;   //nomor dimulai dari 1
         $baris = 2; //baris dimulai dari 2
         foreach ($Barang as $barang) {
             $sheet->setCellValue('A' . $baris, $no++); //nomer cm skli, taruh sini sj inc nya
@@ -413,5 +415,21 @@ class BarangController extends Controller
         $writer->save('php://output'); //simpan ke output
         exit; //keluar dari script
 
+    }
+
+    public function export_pdf()
+    {
+        $barang = BarangModel::select('kategori_id', 'barang_kode', 'barang_nama', 'harga_beli', 'harga_jual')
+            ->orderBy('kategori_id')
+            ->orderBy('barang_kode')
+            ->with('kategori')
+            ->get();
+
+        $pdf = Pdf::loadView('barang.export_pdf', compact('barang'));
+        $pdf->setPaper('A4', 'potrait'); //set ukuran kertas dan orientasi
+        $pdf->setOptions(["isRemoteEnabled"], true); //set true jika ada gambar
+        $pdf->render();
+
+        return $pdf->stream('Data_Barang_' . date('Y-m-d_H-i-s') . '.pdf'); //download file pdf
     }
 }
