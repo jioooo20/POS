@@ -86,4 +86,57 @@ class AuthController extends Controller
         $request->session()->regenerateToken();
         return redirect('login');
     }
+
+    public function profile($id)
+    {
+        $breadcrumb = (object)[
+            'title' => 'Profil',
+            'list' => ['Home', 'Profil']
+        ];
+        $active_menu = 'profile';
+        $user = UserModel::findOrFail($id);
+        return view('auth.profile', compact('breadcrumb',  'user', 'active_menu'));
+    }
+
+    public function edit($id)
+    {
+        $breadcrumb = (object)[
+            'title' => 'Edit Profil',
+            'list' => ['Home', 'Profil','Edit Profil']
+        ];
+        $active_menu = 'profile';
+        $user = UserModel::findOrFail($id);
+
+        return view('auth.edit_profile', compact('breadcrumb', 'user', 'active_menu'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'nama' => 'required|max:100', //fullname
+            'username' => 'required|min:3|max:20',
+            'password' => 'nullable|min:6|max:20',
+            'profile_image' => 'nullable|image|max:2048', // Validate profile image
+        ]);
+
+        $user = UserModel::findOrFail($id);
+        if (UserModel::where('username', $request->username)->where('user_id', '!=', $id)->exists()) {
+            return redirect()->back()->withErrors(['username' => 'Username telah digunakan']);
+        }else {
+            $user->username = $request->username;
+        }
+        $user->nama = $request->nama;
+        if ($request->password) {
+            $user->password = bcrypt($request->password);
+        }
+        if ($request->hasFile('profile_image')) {
+            $image = $request->file('profile_image');
+            $imageContent = file_get_contents($image->getRealPath());
+            $base64Image = 'data:image/' . $image->getClientOriginalExtension() . ';base64,' . base64_encode($imageContent);
+            $user->profile_image = $base64Image;
+        }
+        $user->save();
+
+        return redirect("/profile/{$id}")->with('success', 'Profile updated successfully!');
+    }
 }

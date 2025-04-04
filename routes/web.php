@@ -17,10 +17,13 @@ Route::post('login', [AuthController::class, 'postlogin'])->name('postlogin');
 Route::get('logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/', [WelcomeController::class, 'index']);
+    Route::get('/', [WelcomeController::class, 'index'])->name('dashboard');
 
-    Route::middleware(['authorize:ADM,MNG'])->group(function () {
-        Route::group(['prefix' => 'user'], function () {
+    Route::get('/profile/{id}', [AuthController::class, 'profile'])->name('profile');
+    Route::get('/profile/edit/{id}', [AuthController::class, 'edit'])->name('profile.edit');
+    Route::put('/profile/update/{id}', [AuthController::class, 'update'])->name('profile.update');
+
+    Route::middleware(['authorize:ADM,MNG'])->prefix('user')->group(function () { //disingkat
             Route::get('/create_ajax', [UserController::class, 'create_ajax'])->name('user.create_ajax');
             Route::post('/store_ajax', [UserController::class, 'store_ajax'])->name('user.store_ajax');
             Route::get('/{id}/show_ajax', [UserController::class, 'show_ajax'])->name('user.show_ajax');
@@ -37,7 +40,7 @@ Route::middleware('auth')->group(function () {
             Route::get('/{id}/edit', [UserController::class, 'edit'])->name('user.edit');
             Route::put('/{id}', [UserController::class, 'update'])->name('user.update');
             Route::delete('/{id}', [UserController::class, 'destroy'])->name('user.destroy');
-        });
+    
     });
     Route::middleware(['authorize:ADM,MNG'])->group(function () {
         Route::group(['prefix' => 'level'], function () {

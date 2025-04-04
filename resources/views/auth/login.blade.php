@@ -106,7 +106,7 @@
                 rules: {
                     username: {
                         required: true,
-                        minlength: 4,
+                        minlength: 3,
                         maxlength: 20
                     },
                     password: {
