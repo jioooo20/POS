@@ -113,10 +113,10 @@ class AuthController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'nama' => 'required|max:100', //fullname
+            'nama' => 'required|max:100',
             'username' => 'required|min:3|max:20',
             'password' => 'nullable|min:6|max:20',
-            'profile_image' => 'nullable|image|max:2048', // Validate profile image
+            'profile_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         $user = UserModel::findOrFail($id);
