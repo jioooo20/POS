@@ -42,9 +42,9 @@
                 $('#myModal').modal('show');
             });
         }
-        var dataUser;
+        var dataLevel;
         $(document).ready(function() {
-            dataUser = $('#table_level').DataTable({
+            dataLevel = $('#table_level').DataTable({
                 // serverSide: true, jika ingin menggunakan server side processing
                 serverSide: true,
                 ajax: {

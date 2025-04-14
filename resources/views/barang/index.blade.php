@@ -16,7 +16,7 @@
                 <div class="alert alert-success">{{ session('success') }}</div>
             @endif
             @if (session('error'))
-                <div class="alert alert-danger">{{ session('error') }}</div> 
+                <div class="alert alert-danger">{{ session('error') }}</div>
             @endif
             <div class="row">
                 <div class="col-md-12">
@@ -61,9 +61,9 @@
                 $('#myModal').modal('show');
             });
         }
-        var tableBarang;
+        var dataBarang;
         $(document).ready(function() {
-            tableBarang = $('#table_barang').DataTable({
+            dataBarang = $('#table_barang').DataTable({
                 processing: true,
                 // serverSide: true, jika ingin menggunakan server side processing
                 serverSide: true,
@@ -123,11 +123,11 @@
 
             $('#table_barang_filter input').unbind().bind().on('keyup', function(e) {
                 if (e.keyCode == 13) { // enter key
-                    tableBarang.search(this.value).draw(); //gx tau ni apa di js
+                    dataBarang.search(this.value).draw(); //gx tau ni apa di js
                 }
             });
             $('#kategori_id').on('change', function() {
-                tableBarang.ajax.reload();
+                dataBarang.ajax.reload();
             });
         });
     </script>

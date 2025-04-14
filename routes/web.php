@@ -31,6 +31,10 @@ Route::middleware('auth')->group(function () {
             Route::put('/{id}/update_ajax', [UserController::class, 'update_ajax'])->name('user.update_ajax');
             Route::get('/{id}/delete_ajax', [UserController::class, 'confirm_ajax'])->name('user.confirm_ajax');
             Route::delete('/{id}/delete_ajax', [UserController::class, 'delete_ajax'])->name('user.delete_ajax');
+            Route::get('/import', [UserController::class, 'import'])->name('user.import');
+            Route::post('/import_ajax', [UserController::class, 'import_ajax'])->name('user.import_ajax');
+            Route::get('export_excel', [UserController::class, 'export_excel'])->name('user.export_excel');
+            Route::get('export_pdf', [UserController::class, 'export_pdf'])->name('user.export_pdf');
             //====
             Route::get('/', [UserController::class, 'index'])->name('user');
             Route::post('/list', [UserController::class, 'list'])->name('user.list');
@@ -40,7 +44,7 @@ Route::middleware('auth')->group(function () {
             Route::get('/{id}/edit', [UserController::class, 'edit'])->name('user.edit');
             Route::put('/{id}', [UserController::class, 'update'])->name('user.update');
             Route::delete('/{id}', [UserController::class, 'destroy'])->name('user.destroy');
-    
+
     });
     Route::middleware(['authorize:ADM,MNG'])->group(function () {
         Route::group(['prefix' => 'level'], function () {
@@ -93,6 +97,10 @@ Route::middleware('auth')->group(function () {
             Route::put('/{id}/update_ajax', [SupplierController::class, 'update_ajax'])->name('supplier.update_ajax');
             Route::get('/{id}/delete_ajax', [SupplierController::class, 'confirm_ajax'])->name('supplier.confirm_ajax');
             Route::delete('/{id}/delete_ajax', [SupplierController::class, 'delete_ajax'])->name('supplier.delete_ajax');
+            Route::get('/import', [SupplierController::class, 'import'])->name('supplier.import');
+            Route::post('/import_ajax', [SupplierController::class, 'import_ajax'])->name('supplier.import_ajax');
+            Route::get('export_excel', [SupplierController::class, 'export_excel'])->name('supplier.export_excel');
+            Route::get('export_pdf', [SupplierController::class, 'export_pdf'])->name('supplier.export_pdf');
             //====
             Route::get('/', [SupplierController::class, 'index'])->name('supplier');
             Route::post('/list', [SupplierController::class, 'list'])->name('supplier.list');

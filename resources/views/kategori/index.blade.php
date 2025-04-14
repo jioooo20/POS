@@ -56,9 +56,9 @@
                 $('#myModal').modal('show');
             });
         }
-        var dataUser;
+        var dataKategori;
         $(document).ready(function() {
-            dataUser = $('#table_kategori').DataTable({
+            dataKategori = $('#table_kategori').DataTable({
                 serverSide: true,
                 ajax: {
                     "url": "{{ url('kategori/list') }}",

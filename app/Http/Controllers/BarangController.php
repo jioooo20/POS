@@ -328,34 +328,38 @@ class BarangController extends Controller
 
             $insert = [];
             if (count($data) > 1) { // jika data lebih dari 1 baris
+                $insert = [];
+                
                 foreach ($data as $baris => $value) {
                     if ($baris > 1) { // baris ke 1 adalah header, maka lewati
+                        // Check if barang_kode already exists
+                        if (BarangModel::where('barang_kode', $value['B'])->exists()) {
+                            return response()->json([
+                                'status' => false,
+                                'message' => "Import gagal. Kode barang '{$value['B']}' sudah terdaftar"
+                            ]);
+                        }
+
                         $insert[] = [
                             'kategori_id' => $value['A'],
-                            'barang_kode' => $value['B'],
+                            'barang_kode' => $value['B'], 
                             'barang_nama' => $value['C'],
                             'harga_beli' => $value['D'],
                             'harga_jual' => $value['E'],
                             'created_at' => now(),
-
                         ];
                     }
                 }
 
                 if (count($insert) > 0) {
                     foreach ($insert as $row) {
-                        // mengabaikan row tertentu yang kode nya sudah ada
-                        $exists = BarangModel::where('barang_kode', $row['barang_kode'])->exists();
-                        if (!$exists) {
-                            BarangModel::create($row);
-                        }
+                        BarangModel::create($row);
                     }
+                    return response()->json([
+                        'status' => true,
+                        'message' => 'Data berhasil diimport'
+                    ]);
                 }
-
-                return response()->json([
-                    'status' => true,
-                    'message' => 'Data berhasil diimport'
-                ]);
             } else {
                 return response()->json([
                     'status' => false,
