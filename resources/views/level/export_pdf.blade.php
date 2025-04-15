@@ -105,23 +105,21 @@
         </tr>
     </table>
 
-    <h3 class="text-center">LAPORAN DATA SUPPLIER</h4>
+    <h3 class="text-center">LAPORAN DATA LEVEL</h4>
         <table class="border-all">
             <thead>
                 <tr>
                     <th class="text-center">No</th>
-                    <th class="text-center">Kode Supplier</th>
-                    <th class="text-center">Nama Supplier</th>
-                    <th class="text-center">Alamat</th>
+                    <th class="text-center">Kode Level</th>
+                    <th class="text-center">Nama Level</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($suppliers as $supplier)
+                @foreach ($levels as $level)
                     <tr>
                         <td class="text-center">{{ $loop->iteration }}</td>
-                        <td>{{ $supplier->supplier_kode }}</td>
-                        <td>{{ $supplier->supplier_nama }}</td>
-                        <td>{{ $supplier->supplier_alamat }}</td>
+                        <td>{{ $level->level_kode }}</td>
+                        <td>{{ $level->level_nama }}</td>
                     </tr>
                 @endforeach
             </tbody>
