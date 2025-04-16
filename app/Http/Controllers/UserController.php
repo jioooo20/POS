@@ -348,7 +348,7 @@ class UserController extends Controller
                             'username' => $value['B'],
                             'nama' => $value['C'],
                             'password' => bcrypt($value['D']),
-                            'created_at' => now(),
+                            'created_at' => now()->setTimezone('Asia/Jakarta'),
                         ];
                     }
                 }

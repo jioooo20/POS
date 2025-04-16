@@ -325,7 +325,7 @@ class SupplierController extends Controller
                             'supplier_kode' => $value['A'],
                             'supplier_nama' => $value['B'],
                             'supplier_alamat' => $value['C'],
-                            'created_at' => now(),
+                            'created_at' => now()->setTimezone('Asia/Jakarta'),
                         ];
                     }
                 }

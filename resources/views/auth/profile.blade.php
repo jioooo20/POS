@@ -13,7 +13,7 @@
                                      alt="User profile picture">
                                 @else
                                     <img class="profile-user-img img-fluid img-circle"
-                                        src="{{ asset('adminlte/dist/img/user2-160x160.jpg') }}" alt="User profile picture">
+                                        src="{{ asset('base.jpg') }}" alt="User profile picture">
                                 @endif
                             </div>
 

@@ -329,7 +329,7 @@ class BarangController extends Controller
             $insert = [];
             if (count($data) > 1) { // jika data lebih dari 1 baris
                 $insert = [];
-                
+
                 foreach ($data as $baris => $value) {
                     if ($baris > 1) { // baris ke 1 adalah header, maka lewati
                         // Check if barang_kode already exists
@@ -342,11 +342,11 @@ class BarangController extends Controller
 
                         $insert[] = [
                             'kategori_id' => $value['A'],
-                            'barang_kode' => $value['B'], 
+                            'barang_kode' => $value['B'],
                             'barang_nama' => $value['C'],
                             'harga_beli' => $value['D'],
                             'harga_jual' => $value['E'],
-                            'created_at' => now(),
+                            'created_at' => now()->setTimezone('Asia/Jakarta'),
                         ];
                     }
                 }

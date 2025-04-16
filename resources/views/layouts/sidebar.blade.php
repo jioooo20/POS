@@ -2,8 +2,11 @@
     <!-- Sidebar user (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-            <img class="profile-user-img img-fluid img-circle"src="{{ Auth::user()->profile_image }}"
-                alt="User profile picture">
+            @if(Auth::user()->profile_image)
+                <img class="profile-user-img img-fluid img-circle" src="{{ Auth::user()->profile_image }}" alt="User profile picture">
+            @else
+                <img class="profile-user-img img-fluid img-circle" src="{{ asset('base.jpg') }}" alt="User profile picture">
+            @endif
         </div>
         <div class="info">
             <a href="#" class="d-block">{{ Auth::user()->nama }}</a>

@@ -34,8 +34,8 @@ class DetailPenjualanSeeder extends Seeder
                       'barang_id' => $barang_id,
                       'harga' => rand(5000, 50000), // Harga random
                       'jumlah' => rand(1, 5), // Jumlah random
-                      'created_at' => now(),
-                      'updated_at' => now(),
+                      'created_at' => now()->setTimezone('Asia/Jakarta'),
+                      'updated_at' => now()->setTimezone('Asia/Jakarta'),
                   ];
               }
           }

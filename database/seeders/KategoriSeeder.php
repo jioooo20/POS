@@ -17,32 +17,32 @@ class KategoriSeeder extends Seeder
             [
                 'kategori_kode' => 'ELKTRN',
                 'kategori_nama' => 'Elektronik',
-                'created_at' => now(),
-                'updated_at' => now(),
+                'created_at' => now()->setTimezone('Asia/Jakarta'),
+                'updated_at' => now()->setTimezone('Asia/Jakarta'),
             ],
             [
                 'kategori_kode' => 'PAKNN',
                 'kategori_nama' => 'Pakaian',
-                'created_at' => now(),
-                'updated_at' => now(),
+                'created_at' => now()->setTimezone('Asia/Jakarta'),
+                'updated_at' => now()->setTimezone('Asia/Jakarta'),
             ],
             [
                 'kategori_kode' => 'MKNAN',
                 'kategori_nama' => 'Makanan',
-                'created_at' => now(),
-                'updated_at' => now(),
+                'created_at' => now()->setTimezone('Asia/Jakarta'),
+                'updated_at' => now()->setTimezone('Asia/Jakarta'),
             ],
             [
                 'kategori_kode' => 'MNMAN',
                 'kategori_nama' => 'Minuman',
-                'created_at' => now(),
-                'updated_at' => now(),
+                'created_at' => now()->setTimezone('Asia/Jakarta'),
+                'updated_at' => now()->setTimezone('Asia/Jakarta'),
             ],
             [
                 'kategori_kode' => 'ALTSKR',
                 'kategori_nama' => 'Alat Sekolah',
-                'created_at' => now(),
-                'updated_at' => now(),
+                'created_at' => now()->setTimezone('Asia/Jakarta'),
+                'updated_at' => now()->setTimezone('Asia/Jakarta'),
             ],
         ];
         DB::table('m_kategori')->insert($data);

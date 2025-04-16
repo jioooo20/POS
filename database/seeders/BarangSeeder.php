@@ -21,8 +21,8 @@ class BarangSeeder extends Seeder
                 'barang_nama' => 'TV LED 32 Inch',
                 'harga_beli' => 2000000,
                 'harga_jual' => 2500000,
-                'created_at' => now(),
-                'updated_at' => now(),
+                'created_at' => now()->setTimezone('Asia/Jakarta'),
+                'updated_at' => now()->setTimezone('Asia/Jakarta'),
             ],
             [
                 'kategori_id' => 1,
@@ -30,8 +30,8 @@ class BarangSeeder extends Seeder
                 'barang_nama' => 'Kulkas 2 Pintu',
                 'harga_beli' => 3000000,
                 'harga_jual' => 3500000,
-                'created_at' => now(),
-                'updated_at' => now(),
+                'created_at' => now()->setTimezone('Asia/Jakarta'),
+                'updated_at' => now()->setTimezone('Asia/Jakarta'),
             ],
             [
                 'kategori_id' => 1,
@@ -39,8 +39,8 @@ class BarangSeeder extends Seeder
                 'barang_nama' => 'Mesin Cuci Front Load',
                 'harga_beli' => 4000000,
                 'harga_jual' => 4500000,
-                'created_at' => now(),
-                'updated_at' => now(),
+                'created_at' => now()->setTimezone('Asia/Jakarta'),
+                'updated_at' => now()->setTimezone('Asia/Jakarta'),
             ],
             [
                 'kategori_id' => 1,
@@ -48,8 +48,8 @@ class BarangSeeder extends Seeder
                 'barang_nama' => 'Laptop Core i5',
                 'harga_beli' => 7000000,
                 'harga_jual' => 8000000,
-                'created_at' => now(),
-                'updated_at' => now(),
+                'created_at' => now()->setTimezone('Asia/Jakarta'),
+                'updated_at' => now()->setTimezone('Asia/Jakarta'),
             ],
             [
                 'kategori_id' => 1,
@@ -57,8 +57,8 @@ class BarangSeeder extends Seeder
                 'barang_nama' => 'Smartphone 5G',
                 'harga_beli' => 5000000,
                 'harga_jual' => 5500000,
-                'created_at' => now(),
-                'updated_at' => now(),
+                'created_at' => now()->setTimezone('Asia/Jakarta'),
+                'updated_at' => now()->setTimezone('Asia/Jakarta'),
             ],
 
             // Barang dari Supplier 2
@@ -68,8 +68,8 @@ class BarangSeeder extends Seeder
                 'barang_nama' => 'Kaos Polos',
                 'harga_beli' => 50000,
                 'harga_jual' => 75000,
-                'created_at' => now(),
-                'updated_at' => now(),
+                'created_at' => now()->setTimezone('Asia/Jakarta'),
+                'updated_at' => now()->setTimezone('Asia/Jakarta'),
             ],
             [
                 'kategori_id' => 2,
@@ -77,8 +77,8 @@ class BarangSeeder extends Seeder
                 'barang_nama' => 'Jaket Hoodie',
                 'harga_beli' => 150000,
                 'harga_jual' => 200000,
-                'created_at' => now(),
-                'updated_at' => now(),
+                'created_at' => now()->setTimezone('Asia/Jakarta'),
+                'updated_at' => now()->setTimezone('Asia/Jakarta'),
             ],
             [
                 'kategori_id' => 2,
@@ -86,8 +86,8 @@ class BarangSeeder extends Seeder
                 'barang_nama' => 'Jeans Slim Fit',
                 'harga_beli' => 250000,
                 'harga_jual' => 300000,
-                'created_at' => now(),
-                'updated_at' => now(),
+                'created_at' => now()->setTimezone('Asia/Jakarta'),
+                'updated_at' => now()->setTimezone('Asia/Jakarta'),
             ],
             [
                 'kategori_id' => 2,
@@ -95,8 +95,8 @@ class BarangSeeder extends Seeder
                 'barang_nama' => 'Sepatu Sneakers',
                 'harga_beli' => 350000,
                 'harga_jual' => 450000,
-                'created_at' => now(),
-                'updated_at' => now(),
+                'created_at' => now()->setTimezone('Asia/Jakarta'),
+                'updated_at' => now()->setTimezone('Asia/Jakarta'),
             ],
             [
                 'kategori_id' => 2,
@@ -104,8 +104,8 @@ class BarangSeeder extends Seeder
                 'barang_nama' => 'Topi Baseball',
                 'harga_beli' => 75000,
                 'harga_jual' => 100000,
-                'created_at' => now(),
-                'updated_at' => now(),
+                'created_at' => now()->setTimezone('Asia/Jakarta'),
+                'updated_at' => now()->setTimezone('Asia/Jakarta'),
             ],
 
             // Barang dari Supplier 3
@@ -115,8 +115,8 @@ class BarangSeeder extends Seeder
                 'barang_nama' => 'Beras Premium 5kg',
                 'harga_beli' => 60000,
                 'harga_jual' => 75000,
-                'created_at' => now(),
-                'updated_at' => now(),
+                'created_at' => now()->setTimezone('Asia/Jakarta'),
+                'updated_at' => now()->setTimezone('Asia/Jakarta'),
             ],
             [
                 'kategori_id' => 3,
@@ -124,8 +124,8 @@ class BarangSeeder extends Seeder
                 'barang_nama' => 'Mie Instan 1 Dus',
                 'harga_beli' => 80000,
                 'harga_jual' => 100000,
-                'created_at' => now(),
-                'updated_at' => now(),
+                'created_at' => now()->setTimezone('Asia/Jakarta'),
+                'updated_at' => now()->setTimezone('Asia/Jakarta'),
             ],
             [
                 'kategori_id' => 3,
@@ -133,8 +133,8 @@ class BarangSeeder extends Seeder
                 'barang_nama' => 'Minyak Goreng 2L',
                 'harga_beli' => 28000,
                 'harga_jual' => 35000,
-                'created_at' => now(),
-                'updated_at' => now(),
+                'created_at' => now()->setTimezone('Asia/Jakarta'),
+                'updated_at' => now()->setTimezone('Asia/Jakarta'),
             ],
             [
                 'kategori_id' => 3,
@@ -142,8 +142,8 @@ class BarangSeeder extends Seeder
                 'barang_nama' => 'Susu Kental Manis',
                 'harga_beli' => 10000,
                 'harga_jual' => 15000,
-                'created_at' => now(),
-                'updated_at' => now(),
+                'created_at' => now()->setTimezone('Asia/Jakarta'),
+                'updated_at' => now()->setTimezone('Asia/Jakarta'),
             ],
             [
                 'kategori_id' => 3,
@@ -151,8 +151,8 @@ class BarangSeeder extends Seeder
                 'barang_nama' => 'Roti Tawar',
                 'harga_beli' => 12000,
                 'harga_jual' => 18000,
-                'created_at' => now(),
-                'updated_at' => now(),
+                'created_at' => now()->setTimezone('Asia/Jakarta'),
+                'updated_at' => now()->setTimezone('Asia/Jakarta'),
             ],
         ]);
     }

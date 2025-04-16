@@ -318,7 +318,7 @@ class KategoriController extends Controller
                         $insert[] = [
                             'kategori_kode' => $value['A'],
                             'kategori_nama' => $value['B'],
-                            'created_at' => now(),
+                            'created_at' => now()->setTimezone('Asia/Jakarta'),
                         ];
                     }
                 }
@@ -393,7 +393,7 @@ class KategoriController extends Controller
 
         $pdf = Pdf::loadView('kategori.export_pdf', compact('kategoris'));
         $pdf->setPaper('A4', 'portrait'); //set ukuran kertas dan orientasi
-        $pdf->setOptions(["isRemoteEnabled"], true); //set true jika ada gambar 
+        $pdf->setOptions(["isRemoteEnabled"], true); //set true jika ada gambar
         $pdf->render();
 
         return $pdf->stream('Data_Kategori_' . date('Y-m-d_H-i-s') . '.pdf'); //download file pdf
