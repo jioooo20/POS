@@ -60,7 +60,6 @@
                     }
                 },
                 columns: [{
-                    // nomor urut dari laravel datatable addIndexColumn()
                     data: "DT_RowIndex",
                     className: "text-center",
                     orderable: false,
@@ -78,7 +77,6 @@
                     orderable: true,
                     searchable: true
                 }, {
-                    // mengambil data level hasil dari ORM berelasi
                     data: "supplier_alamat",
                     className: "",
                     orderable: false,

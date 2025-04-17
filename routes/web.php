@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LevelController;
+use App\Http\Controllers\StokController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WelcomeController;
@@ -143,5 +144,25 @@ Route::middleware('auth')->group(function () {
             Route::delete('/{id}', [BarangController::class, 'destroy'])->name('barang.destroy');
         });
     });
-    Route::middleware(['authorize:ADM,MNG'])->prefix('transaksi')->group(function () {});
+    Route::middleware(['authorize:ADM,MNG,STF'])->prefix('stok')->group(function () {
+        Route::get('/', [StokController::class, 'index'])->name('stok');
+        Route::post('/list', [StokController::class, 'list'])->name('stok.list');
+        Route::get('/create_ajax', [StokController::class, 'create_ajax'])->name('stok.create_ajax');
+        Route::post('/store_ajax', [StokController::class, 'store_ajax'])->name('stok.store_ajax');
+        Route::get('/{id}/delete_ajax', [StokController::class, 'confirm_ajax'])->name('stok.confirm_ajax');
+        Route::delete('/{id}/delete_ajax', [StokController::class, 'delete_ajax'])->name('stok.delete_ajax');
+        Route::get('/import', [StokController::class, 'import'])->name('stok.import');
+        Route::post('/import_ajax', [StokController::class, 'import_ajax'])->name('stok.import_ajax');
+        Route::get('export_excel', [StokController::class, 'export_excel'])->name('stok.export_excel');
+        Route::get('export_pdf', [StokController::class, 'export_pdf'])->name('stok.export_pdf');
+    });
+
+
+    Route::middleware(['authorize:ADM,MNG,STF'])->prefix('transaksi')->group(function () {
+        Route::get('/', [StokController::class, 'index'])->name('transaksi');
+        Route::post('/list', [StokController::class, 'list'])->name('transaksi.list');
+        Route::get('/create_ajax', [StokController::class, 'create_ajax'])->name('transaksi.create_ajax');
+        Route::post('/store_ajax', [StokController::class, 'store_ajax'])->name('transaksi.store_ajax');
+    });
 });
+

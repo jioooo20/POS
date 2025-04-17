@@ -86,7 +86,7 @@
             </li>
             <li class="nav-header">Transaksi Penjualan</li>
             <li class="nav-item">
-                <a href="{{ url('/barang') }}" class="nav-link {{ $active_menu == 'penjualan' ? 'active' : '' }} ">
+                <a href="{{ url('/transaksi') }}" class="nav-link {{ $active_menu == 'penjualan' ? 'active' : '' }} ">
                     <i class="nav-icon fas fa-cash-register"></i>
                     <p>Transaksi Penjualan</p>
                 </a>
