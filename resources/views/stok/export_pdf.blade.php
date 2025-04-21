@@ -101,6 +101,7 @@
                     <th>Supplier</th>
                     <th>Barang</th>
                     <th>Jumlah Stok</th>
+                    <th>Sisa Stok</th>
                     <th>Tanggal Stok</th>
                 </tr>
             </thead>
@@ -112,6 +113,7 @@
                         <td>{{ $s->supplier->supplier_nama }}</td>
                         <td>{{ $s->barang->barang_nama }}</td>
                         <td>{{ $s->stok_jumlah }}</td>
+                        <td>{{ $s->stok_sisa }}</td>
                         <td>{{ $s->stok_tanggal }}</td>
 
                     </tr>

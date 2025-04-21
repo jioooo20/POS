@@ -18,6 +18,7 @@ class StokModel extends Model
         'user_id',
         'stok_tanggal',
         'stok_jumlah',
+        'stok_sisa',
     ];
 
     public function supplier()

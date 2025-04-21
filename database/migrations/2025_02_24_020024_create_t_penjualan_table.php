@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('pembeli', 50);
             $table->string('penjualan_kode', 20);
+            $table->enum('status', ['berhasil', 'dibatalkan'])->default('berhasil');
             $table->dateTime('penjualan_tanggal');
 
             //foreign key

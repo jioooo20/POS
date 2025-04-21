@@ -30,4 +30,8 @@ class BarangModel extends Model
     {
         return $this->hasMany(StokModel::class, 'barang_id', 'barang_id');
     }
+    public function detail_penjualan()
+    {
+        return $this->hasMany(DetailPenjualanModel::class, 'barang_id', 'barang_id');
+    }
 }

@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LevelController;
+use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\StokController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UserController;
@@ -158,11 +159,16 @@ Route::middleware('auth')->group(function () {
     });
 
 
-    Route::middleware(['authorize:ADM,MNG,STF'])->prefix('transaksi')->group(function () {
-        Route::get('/', [StokController::class, 'index'])->name('transaksi');
-        Route::post('/list', [StokController::class, 'list'])->name('transaksi.list');
-        Route::get('/create_ajax', [StokController::class, 'create_ajax'])->name('transaksi.create_ajax');
-        Route::post('/store_ajax', [StokController::class, 'store_ajax'])->name('transaksi.store_ajax');
+    Route::middleware(['authorize:ADM,MNG,STF'])->prefix('penjualan')->group(function () {
+        Route::get('/', [PenjualanController::class, 'index'])->name('penjualan');
+        Route::post('/list', [PenjualanController::class, 'list'])->name('penjualan.list');
+        Route::get('/create_ajax', [PenjualanController::class, 'create_ajax'])->name('penjualan.create_ajax');
+        Route::post('/store_ajax', [PenjualanController::class, 'store_ajax'])->name('penjualan.store_ajax');
+        Route::get('/{id}/show_ajax', [PenjualanController::class, 'show_ajax'])->name('penjualan.show_ajax');
+        Route::get('/{id}/delete_ajax', [PenjualanController::class, 'confirm_ajax'])->name('penjualan.confirm_ajax');
+        Route::delete('/{id}/delete_ajax', [PenjualanController::class, 'delete_ajax'])->name('penjualan.delete_ajax');
+        Route::get('export_excel', [PenjualanController::class, 'export_excel'])->name('penjualan.export_excel');
+        Route::get('export_pdf', [PenjualanController::class, 'export_pdf'])->name('penjualan.export_pdf');
     });
 });
 
