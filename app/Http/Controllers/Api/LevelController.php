@@ -8,7 +8,8 @@ use Illuminate\Http\Request;
 
 class LevelController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         return LevelModel::all();
     }
 
