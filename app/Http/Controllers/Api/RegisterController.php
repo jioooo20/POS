@@ -16,6 +16,7 @@ class RegisterController extends Controller
             'nama' => 'required',
             'password' => 'required|min:6|confirmed',
             'level_id' => 'required',
+            'profile_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         if ($validator->fails()) {
@@ -27,6 +28,7 @@ class RegisterController extends Controller
             'nama' => $request->nama,
             'password' => bcrypt($request->password),
             'level_id' => $request->level_id,
+            'profile_image' => $request->profile_image,
         ]);
 
         if($user){

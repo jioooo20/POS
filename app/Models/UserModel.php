@@ -29,6 +29,7 @@ class UserModel extends Authenticatable implements JWTSubject
         'username',
         'nama',
         'password',
+        'profile_image',
     ];
 
     protected $hidden = [
