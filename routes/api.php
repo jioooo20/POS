@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\PenjualanController;
 use App\Http\Controllers\Api\RegisterController;
 use App\Http\Controllers\Api\LoginController;
 use App\Http\Controllers\Api\LogoutController;
@@ -26,7 +27,7 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::post('register', RegisterController::class)->name('register');
-Route::post('register1', RegisterController::class)->name('register');
+Route::post('register1', RegisterController::class)->name('register1');
 Route::post('login', LoginController::class)->name('login');
 Route::middleware('auth:api')->get('user', function (Request $request) {
     return $request->user();
@@ -56,3 +57,9 @@ Route::post('barang', [BarangController::class, 'store'])->name('barang.store');
 Route::get('barang/{barang}', [BarangController::class, 'show'])->name('barang.show');
 Route::put('barang/{barang}', [BarangController::class, 'update'])->name('barang.update');
 Route::delete('barang/{barang}', [BarangController::class, 'destroy'])->name('barang.destroy');
+
+Route::get('penjualan', [PenjualanController::class, 'index'])->name('penjualan.index');
+Route::post('penjualan', [PenjualanController::class, 'store'])->name('penjualan.store');
+Route::get('penjualan/{penjualan}', [PenjualanController::class, 'show'])->name('penjualan.show');
+Route::put('penjualan/{penjualan}', [PenjualanController::class, 'update'])->name('penjualan.update');
+Route::delete('penjualan/{penjualan}', [PenjualanController::class, 'destroy'])->name('penjualan.destroy');
