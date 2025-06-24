@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LevelController;
+use App\Http\Controllers\LowonganController;
 use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\StokController;
 use App\Http\Controllers\SupplierController;
@@ -13,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 
 $router->pattern('id', '[0-9]+');
 Route::get('register', [AuthController::class, 'register'])->name('register');
-// Route::post('register', [AuthController::class, 'postregister'])->name('postregister');
+Route::post('register', [AuthController::class, 'postregister'])->name('postregister');
 Route::get('login', [AuthController::class, 'login'])->name('login');
 Route::post('login', [AuthController::class, 'postlogin'])->name('postlogin');
 Route::get('logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');
@@ -170,5 +171,6 @@ Route::middleware('auth')->group(function () {
         Route::get('export_excel', [PenjualanController::class, 'export_excel'])->name('penjualan.export_excel');
         Route::get('export_pdf', [PenjualanController::class, 'export_pdf'])->name('penjualan.export_pdf');
     });
+
 });
 

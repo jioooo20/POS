@@ -55,6 +55,7 @@ class UserModel extends Authenticatable implements JWTSubject
         return $this->hasMany(PenjualanModel::class, 'user_id', 'user_id');
     }
 
+
     //ambil nama role
     public function getRoleName(): string{
         return $this->level->level_nama;

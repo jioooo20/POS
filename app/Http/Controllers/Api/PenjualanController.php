@@ -16,13 +16,13 @@ class PenjualanController extends Controller
         return PenjualanModel::with('detail')->get();
     }
 
-    public function store(Request $request)
+    public function storeapi(Request $request)
     {
         // Create penjualan with current date
         $data = array_merge($request->except('detail_penjualan'), [
             'penjualan_tanggal' => now()
         ]);
-        
+
         $penjualan = PenjualanModel::create($data);
 
         // Create details
@@ -43,7 +43,7 @@ class PenjualanController extends Controller
     {
         // Update penjualan data
         $penjualan->update($request->except('detail_penjualan'));
-        
+
         // Update detail penjualan if provided
         if ($request->has('detail_penjualan')) {
             foreach ($request->detail_penjualan as $detail) {

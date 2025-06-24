@@ -24,9 +24,9 @@
     <div class="login-box">
         <!-- /.login-logo -->
         <div class="card card-outline card-primary">
-            <div class="card-header text-center"><a href="{{ url('/') }}" class="h1"><b>Admin</b>LTE</a></div>
+            <div class="card-header text-center"><a href="{{ url('/') }}" class="h1">Point of Sales</a></div>
             <div class="card-body">
-                <p class="login-box-msg">Sign in to start your session</p>
+                <p class="login-box-msg">Silakan Login</p>
                 <form action="{{ route('postlogin') }}" method="POST" id="form-login">
                     @csrf
                     <div class="input-group mb-3">

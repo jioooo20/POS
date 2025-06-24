@@ -76,6 +76,24 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('123456'),
                 'created_at' => now()->setTimezone('Asia/Jakarta'),
                 'updated_at' => now()->setTimezone('Asia/Jakarta')
+            ],
+            [
+                'user_id' => 8,
+                'level_id' => 6,
+                'username' => 'indolakto',
+                'nama' => 'PT Indolakto',
+                'password' => Hash::make('123456'),
+                'created_at' => now()->setTimezone('Asia/Jakarta'),
+                'updated_at' => now()->setTimezone('Asia/Jakarta')
+            ],
+            [
+                'user_id' => 9,
+                'level_id' => 7,
+                'username' => 'jokowi',
+                'nama' => 'Jokowi dodo',
+                'password' => Hash::make('123456'),
+                'created_at' => now()->setTimezone('Asia/Jakarta'),
+                'updated_at' => now()->setTimezone('Asia/Jakarta')
             ]
         ];
         DB::table('m_user')->insert($data);

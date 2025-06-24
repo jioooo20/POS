@@ -23,7 +23,7 @@
 <body class="hold-transition register-page">
     <div class="register-box">
         <div class="card card-outline card-primary">
-            <div class="card-header text-center"><a href="{{ url('/') }}" class="h1"><b>Admin</b>LTE</a></div>
+            <div class="card-header text-center"><a href="{{ url('/') }}" class="h1">Point of Sales</a></div>
             <div class="card-body">
                 <p class="login-box-msg">Register a new membership</p>
                 <form action="{{ route('postregister') }}" method="POST" id="form-register">
@@ -135,9 +135,9 @@
                 },
                 submitHandler: function(form) {
                     $.ajax({
-                        url: "{{ route('postregister') }}", // Sesuaikan dengan route-mu
+                        url: "{{ route('postregister') }}",
                         method: "POST",
-                        data: $('#form-register').serialize(), // Sesuaikan dengan ID form-mu
+                        data: $('#form-register').serialize(),
                         success: function(response) {
                             if (response.status) {
                                 Swal.fire({

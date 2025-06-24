@@ -26,40 +26,40 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-Route::post('register', RegisterController::class)->name('register');
-Route::post('register1', RegisterController::class)->name('register1');
-Route::post('login', LoginController::class)->name('login');
+Route::post('register', RegisterController::class)->name('registerr');
+Route::post('register1', RegisterController::class)->name('registerr1');
+Route::post('login', LoginController::class)->name('loginn');
 Route::middleware('auth:api')->get('user', function (Request $request) {
     return $request->user();
 });
-Route::post('logout', LogoutController::class)->name('logout');
+Route::post('logout', LogoutController::class)->name('logoutt');
 
-Route::get('levels', [LevelController::class, 'index'])->name('levels.index');
-Route::post('levels', [LevelController::class, 'store'])->name('levels.store');
-Route::get('levels/{level}', [LevelController::class, 'show'])->name('levels.show');
-Route::put('levels/{level}', [LevelController::class, 'update'])->name('levels.update');
-Route::delete('levels/{level}', [LevelController::class, 'destroy'])->name('levels.destroy');
+Route::get('levels', [LevelController::class, 'index'])->name('levels.indexx');
+Route::post('levels', [LevelController::class, 'store'])->name('levels.storee');
+Route::get('levels/{level}', [LevelController::class, 'show'])->name('levels.showw');
+Route::put('levels/{level}', [LevelController::class, 'update'])->name('levels.updatee');
+Route::delete('levels/{level}', [LevelController::class, 'destroy'])->name('levels.destroyy');
 
-Route::get('users', [UserController::class, 'index'])->name('users.index');
-Route::post('users', [UserController::class, 'store'])->name('users.store');
-Route::get('users/{user}', [UserController::class, 'show'])->name('users.show');
-Route::put('users/{user}', [UserController::class, 'update'])->name('users.update');
-Route::delete('users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
+Route::get('users', [UserController::class, 'index'])->name('users.indexx');
+Route::post('users', [UserController::class, 'store'])->name('users.storee');
+Route::get('users/{user}', [UserController::class, 'show'])->name('users.showw');
+Route::put('users/{user}', [UserController::class, 'update'])->name('users.updatee');
+Route::delete('users/{user}', [UserController::class, 'destroy'])->name('users.destroyy');
 
-Route::get('kategori', [KategoriController::class, 'index'])->name('kategori.index');
-Route::post('kategori', [KategoriController::class, 'store'])->name('kategori.store');
-Route::get('kategori/{kategori}', [KategoriController::class, 'show'])->name('kategori.show');
-Route::put('kategori/{kategori}', [KategoriController::class, 'update'])->name('kategori.update');
-Route::delete('kategori/{kategori}', [KategoriController::class, 'destroy'])->name('kategori.destroy');
+Route::get('kategori', [KategoriController::class, 'index'])->name('kategori.indexx');
+Route::post('kategori', [KategoriController::class, 'store'])->name('kategori.storee');
+Route::get('kategori/{kategori}', [KategoriController::class, 'show'])->name('kategori.showw');
+Route::put('kategori/{kategori}', [KategoriController::class, 'update'])->name('kategori.updatee');
+Route::delete('kategori/{kategori}', [KategoriController::class, 'destroy'])->name('kategori.destroyy');
 
-Route::get('barang', [BarangController::class, 'index'])->name('barang.index');
-Route::post('barang', [BarangController::class, 'store'])->name('barang.store');
-Route::get('barang/{barang}', [BarangController::class, 'show'])->name('barang.show');
-Route::put('barang/{barang}', [BarangController::class, 'update'])->name('barang.update');
-Route::delete('barang/{barang}', [BarangController::class, 'destroy'])->name('barang.destroy');
+Route::get('barang', [BarangController::class, 'index'])->name('barang.indexx');
+Route::post('barang', [BarangController::class, 'store'])->name('barang.storee');
+Route::get('barang/{barang}', [BarangController::class, 'show'])->name('barang.showw');
+Route::put('barang/{barang}', [BarangController::class, 'update'])->name('barang.updatee');
+Route::delete('barang/{barang}', [BarangController::class, 'destroy'])->name('barang.destroyy');
 
-Route::get('penjualan', [PenjualanController::class, 'index'])->name('penjualan.index');
-Route::post('penjualan', [PenjualanController::class, 'store'])->name('penjualan.store');
-Route::get('penjualan/{penjualan}', [PenjualanController::class, 'show'])->name('penjualan.show');
-Route::put('penjualan/{penjualan}', [PenjualanController::class, 'update'])->name('penjualan.update');
-Route::delete('penjualan/{penjualan}', [PenjualanController::class, 'destroy'])->name('penjualan.destroy');
+Route::get('penjualan', [PenjualanController::class, 'index'])->name('penjualan.indexx');
+Route::post('penjualan', [PenjualanController::class, 'storeapi'])->name('penjualan.storee');
+Route::get('penjualan/{penjualan}', [PenjualanController::class, 'show'])->name('penjualan.showw');
+Route::put('penjualan/{penjualan}', [PenjualanController::class, 'update'])->name('penjualan.updatee');
+Route::delete('penjualan/{penjualan}', [PenjualanController::class, 'destroy'])->name('penjualan.destroyy');

@@ -64,6 +64,19 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header">
+                    <h3 class="card-title">Video Panduan Aplikasi ini</h3>
+                </div>
+                <div class="card-body">
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/y14DW-eHZy0?si=2AxQnelccUwoRdQ8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
                     <h3 class="card-title">Stok Ready Dijual</h3>
 
                     <div class="card-tools">

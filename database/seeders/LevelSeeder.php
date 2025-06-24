@@ -18,7 +18,9 @@ class LevelSeeder extends Seeder
             ['level_id' => 2, 'level_kode' => 'MNG', 'level_nama' => 'Manager', 'created_at' => now()->setTimezone('Asia/Jakarta'), 'updated_at' => now()->setTimezone('Asia/Jakarta')],
             ['level_id' => 3, 'level_kode' => 'STF', 'level_nama' => 'Staff/Kasir', 'created_at' => now()->setTimezone('Asia/Jakarta'), 'updated_at' => now()->setTimezone('Asia/Jakarta')],
             ['level_id' => 4, 'level_kode' => 'SUP', 'level_nama' => 'Supplier', 'created_at' => now()->setTimezone('Asia/Jakarta'), 'updated_at' => now()->setTimezone('Asia/Jakarta')],
-            ['level_id' => 5, 'level_kode' => 'PLG', 'level_nama' => 'Pelanggan', 'created_at' => now()->setTimezone('Asia/Jakarta'), 'updated_at' => now()->setTimezone('Asia/Jakarta')]
+            ['level_id' => 5, 'level_kode' => 'PLG', 'level_nama' => 'Pelanggan', 'created_at' => now()->setTimezone('Asia/Jakarta'), 'updated_at' => now()->setTimezone('Asia/Jakarta')],
+            ['level_id' => 6, 'level_kode' => 'PRS', 'level_nama' => 'Perusahaan', 'created_at' => now()->setTimezone('Asia/Jakarta'), 'updated_at' => now()->setTimezone('Asia/Jakarta')],
+            ['level_id' => 7, 'level_kode' => 'PLM', 'level_nama' => 'Pelamar', 'created_at' => now()->setTimezone('Asia/Jakarta'), 'updated_at' => now()->setTimezone('Asia/Jakarta')],
         ];
 
         DB::table('m_level')->insert($data);

@@ -67,12 +67,12 @@ class AuthController extends Controller
                     'message' => 'Login Berhasil',
                     'redirect' => url('/')
                 ]);
+            } else {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Username atau password salah'
+                ]);
             }
-
-            return response()->json([
-                'status' => false,
-                'message' => 'Login Gagal'
-            ]);
         }
 
         return redirect('login');
