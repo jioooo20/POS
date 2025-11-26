@@ -1,3 +1,10 @@
+# Kelompok 2
+
+Farrel Augusta Dinata
+Giovano Alkandri 
+Annisa Kurniawati 
+Dedy Bayu Setiawan
+
 # Feature Tests - Authentication
 
 ## Overview
